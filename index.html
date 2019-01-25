@@ -21,24 +21,28 @@
       auto2top:true,
       themeColor: '#2895f0',
       formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      loadSidebar:true,
+      subMaxLevel: 2
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <!-- Global Search -->
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+  <!-- Code Copy -->
   <script src="//unpkg.com/docsify-copy-code"></script>
+  <!-- Gitalk -->
   <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
   <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
   <script>
-      
       const gitalk = new Gitalk({
-                    clientID: '83b2a872e0289cbfa18d',
-                    clientSecret: '1cf3b8bf276552654e2dbbb863b7bef66412f2c6',
-                    repo: 'css-secret',
-                    owner: 'myWsq',
-                    admin: ['myWsq'],
-                    id: window.location.pathname,
-                    });
-                    gitalk.render('gitalk-container');
+            clientID: '83b2a872e0289cbfa18d',
+            clientSecret: '1cf3b8bf276552654e2dbbb863b7bef66412f2c6',
+            repo: 'css-secret',
+            owner: 'myWsq',
+            admin: ['myWsq'],
+            id: 'css-secret',
+            });
+            gitalk.render('gitalk-container');
                 
     </script>
 </body>
