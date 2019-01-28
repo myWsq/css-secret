@@ -58,3 +58,43 @@ button:active{
 接下来, 我们只要简单的改变字号大小与主色调即可产生不同按钮变体:
 
 <iframe width="100%" height="300" src="//jsfiddle.net/myWsq/rpnL54qv/43/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+### 更多DRY技巧
+
+**1. 不要一味追求代码量少.**
+
+来看看下面这段代码, 我们要给元素添加10px宽的边框, 但左侧不加边框.
+
+```css
+{
+    border-width:10px 10px 10px 0;
+}
+```
+只要一条声明就足够了, 但是日后如果需要改动边框宽度, 我们需要同时修改三处. 如果将这条声明拆开写, 就方便多了.
+
+```css
+{
+    border-width: 10px;
+    border-left-width: 0;
+}
+```
+
+**2. currentcolor**
+
+这是一个特殊的关键字, 一直被解析为当前元素的文本颜色`color`. 这可能是CSS有史以来第一个**变量**. 假如我们想让`hr`标签的颜色与文本颜色相同, 只需这样写:
+
+<iframe width="100%" height="300" src="//jsfiddle.net/myWsq/fr3okw1h/13/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+发现了吗? 似乎很多已有的属性也具有类似的行为. **currentcolor本身是很多CSS颜色属性的初始值.** 比如`border-color`,`outline-color`以及`text-shadow`,`box-shadow`的颜色值, 等等.
+
+**3. 继承**
+
+`inherit`是一个很容易被遗忘的关键字. 它可以作用于任何CSS属性中并绑定父元素的计算值(对伪元素来说, 则会取生成改伪元素的宿主元素). 举例来说, 要将表单元素的字体设置为与页面其他元素相同, 我们只需利用inherit的特性而不是重新指定字体:
+
+```css
+input, select, button { font: inherit; }
+```
+
+这个技巧在编写气泡等依赖性较强的元素时, 非常有用:
+
+<iframe width="100%" height="300" src="//jsfiddle.net/myWsq/anujxw60/31/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
