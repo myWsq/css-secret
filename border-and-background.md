@@ -87,7 +87,7 @@ CSS3中, `background-position`属性已经得到了扩展, 它允许我们指定
 
 条纹背景很常见, 通常的做法是生成一个独立的条纹位图文件作为背景图片. 对于每次改动, 我们都需要用图形编辑器来修改它. 即便是使用svg, 也需要一个独立文件. 如果能直接利用CSS生成条纹背景那就太棒了. 事实上, 真的可以:
 
-<iframe width="100%" height="380" src="//jsfiddle.net/myWsq/7t1dybmc/25/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe width="100%" height="380" src="//jsfiddle.net/myWsq/7t1dybmc/27/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 观察下面的代码, 随着渐图案色标的拉近, 颜色过渡区域越来越小, 直到最后几乎消失. 
 
