@@ -185,3 +185,23 @@ CSS3中, `background-position`属性已经得到了扩展, 它允许我们指定
 
 这样做还为我们提供了一个合理的回退方案, 在老旧的浏览器上将直接显示背景色. 
 
+## 连续的图像边框
+
+有时候我们会有这样的需求: 使用图像作为一个元素的边框而不是背景. 基本上就是一张图别裁掉了内容所在的区域只留下一个方框, 就像下面这张图: 
+
+![](http://ipic-1253962968.file.myqcloud.com/2019-01-31-Artboard-2.jpg)
+
+> 使用`broder-image`无法实现这种效果, 因为它基于九宫格分割法, 参考 [border-image](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-image).
+
+用两个元素叠加可以非常简单地实现这个效果, 或者使用白色的渐变图案叠加一层背景, 通过修改`background-clip`的值, 使白色背景沿边框裁剪, 实现这种效果:
+
+<iframe width="100%" height="300" src="//jsfiddle.net/myWsq/7t1dybmc/48/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+值得注意的一点是, `background-origin`默认是`padding-box`, 如果我们不指定为`border-box`, 会出现非常怪异的拼接效果, 因为它的定位原点在内侧, 左上边框是右下部分超出后拼接过来的.
+
+### 利用条纹背景
+
+组合我们这两种方法, 可以实现很好玩的效果.
+
+<iframe width="100%" height="300" src="//jsfiddle.net/myWsq/7t1dybmc/65/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
