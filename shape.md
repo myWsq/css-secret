@@ -86,3 +86,29 @@ button > span{
 <iframe width="100%" height="300" src="//jsfiddle.net/myWsq/jp9371zd/10/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 **这个方案还适用于其他形变形式, 或者说还适用于任何我们希望改变容器样式而不改变内容样式的情况.**
+
+## 菱形图片
+
+将图片裁剪为菱形是一种常见的设计手法. 通常, 我们会用图片处理器将实现处理图片, 然而这种方法的可维护性并不好, 将来很难做出改动. 借助现代CSS的特性, 我们可以直接利用代码裁剪出菱形图片.
+
+### 形变方案
+
+还记得我们平行四边形的嵌套元素方案吗, 主要思路是在图片元素外层包裹一层容器, 在对容器做形变处理后对里层内容做反向形变处理.
+
+<iframe width="100%" height="300" src="//jsfiddle.net/myWsq/jp9371zd/24/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+效果和我们预想的有些偏差, 主要是因为`max-width: 100%`会解析为与容器元素的边长相等.  实际上, 里层图像的长度应该与容器元素的对角线长度相等. 利用勾股定理可以得出对角线长度大约是边长的**1.42**倍.  直接改变里层图像大小当然可以, 不过这不是最好的做法, 当浏览器不支持形变的时候, 我们希望图片保持100%. 使用`scale()`函数可以为我们提供合理的回退方案.
+
+<iframe width="100%" height="300" src="//jsfiddle.net/myWsq/jp9371zd/27/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
+### 裁剪路径方案
+
+上面的方法对于正方形图片有效, 一旦图片的长宽不等时, 就会产生严重的崩坏. 
+
+事实上, 我们有更好的办法来实现这一效果, 利用`clip-path`属性, 从字面意思来看, 这是一个支持任意路径的裁剪属性. 可惜的是, 这个属性兼容性并不好. 
+
+![](http://ipic-1253962968.file.myqcloud.com/2019-02-02-065844.png)
+
+只需要指定裁剪路径, 不需要嵌套额外的元素, 甚至支持过渡效果:
+
+<iframe width="100%" height="300" src="//jsfiddle.net/myWsq/jp9371zd/34/embedded/html,css,result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
